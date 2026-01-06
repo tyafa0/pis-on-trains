@@ -4,6 +4,8 @@
 ![C#](https://img.shields.io/badge/Language-C%23-239120?logo=csharp&logoColor=white)
 
 **反射神経と精密性。迫りくる列車を選別する2Dクリックアクションゲーム。**
+![pis_preview](https://github.com/user-attachments/assets/801da3b9-6f9a-4d15-b861-441fae46fc8b)
+
 
 ## 🎮 概要
 画面左右から流れてくる列車に対し、瞬時の判断でクリックを行うシンプルなアクションゲームです。「クリックのみ」という直感的な操作性ながら、時間の経過とともに加速するゲームスピードと、動的に変化する出現密度により、高い没入感と緊張感を提供します。
