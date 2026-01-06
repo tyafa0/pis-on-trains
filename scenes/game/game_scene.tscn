@@ -1,0 +1,94 @@
+[gd_scene load_steps=6 format=3 uid="uid://dywkqwm1m44c4"]
+
+[ext_resource type="Script" uid="uid://bhq0nkmwb2k53" path="res://scenes/game/GameScene.cs" id="1_w5aja"]
+[ext_resource type="PackedScene" uid="uid://dnjidmjc80typ" path="res://scenes/train/Train.tscn" id="2_onqr8"]
+[ext_resource type="Script" uid="uid://hylc587742ss" path="res://scenes/game/Spawner.cs" id="3_ycayy"]
+[ext_resource type="AudioStream" uid="uid://fd4y758l5jqg" path="res://rc/HIGH5LANDER.mp3" id="4_bw6k5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ycayy"]
+font_size = 128
+font_color = Color(1, 0.17254902, 0.09019608, 1)
+
+[node name="GameScene" type="Node2D"]
+script = ExtResource("1_w5aja")
+
+[node name="BackButton" type="Button" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 1776.0
+offset_top = 32.0
+offset_right = 1895.0
+offset_bottom = 107.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "Back"
+
+[node name="Train" parent="." instance=ExtResource("2_onqr8")]
+visible = false
+position = Vector2(117, 500)
+
+[node name="Spawner" type="Node" parent="." node_paths=PackedStringArray("LeftSpawnPoints", "RightSpawnPoints")]
+script = ExtResource("3_ycayy")
+TrainScene = ExtResource("2_onqr8")
+LeftSpawnPoints = [NodePath("SpawnPosLeft0"), NodePath("SpawnPosLeft1"), NodePath("SpawnPosLeft2")]
+RightSpawnPoints = [NodePath("SpawnPosRight0"), NodePath("SpawnPosRight1"), NodePath("SpawnPosRight2")]
+
+[node name="SpawnPosLeft0" type="Marker2D" parent="Spawner"]
+position = Vector2(-90, 240)
+
+[node name="SpawnPosLeft1" type="Marker2D" parent="Spawner"]
+position = Vector2(-90, 380)
+
+[node name="SpawnPosLeft2" type="Marker2D" parent="Spawner"]
+position = Vector2(-90, 520)
+
+[node name="SpawnPosRight0" type="Marker2D" parent="Spawner"]
+position = Vector2(2010, 240)
+
+[node name="SpawnPosRight1" type="Marker2D" parent="Spawner"]
+position = Vector2(2010, 380)
+
+[node name="SpawnPosRight2" type="Marker2D" parent="Spawner"]
+position = Vector2(2010, 520)
+
+[node name="Timer" type="Timer" parent="Spawner"]
+wait_time = 1.2
+autostart = true
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="ScoreLabel" type="Label" parent="HUD"]
+offset_left = 28.0
+offset_top = 89.0
+offset_right = 268.0
+offset_bottom = 156.0
+theme_override_font_sizes/font_size = 48
+text = "Score: 0"
+
+[node name="TimeLabel" type="Label" parent="HUD"]
+offset_left = 24.0
+offset_top = 11.0
+offset_right = 218.0
+offset_bottom = 78.0
+theme_override_font_sizes/font_size = 48
+text = "Time: 30"
+
+[node name="GameOverLabel" type="Label" parent="HUD"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -11.5
+offset_right = 46.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_ycayy")
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_bw6k5")
+volume_db = -12.681
+autoplay = true

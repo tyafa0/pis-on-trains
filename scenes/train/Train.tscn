@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://dnjidmjc80typ"]
+
+[ext_resource type="Shader" uid="uid://bklc7j5s0t2gw" path="res://scenes/train/train_grayscale.gdshader" id="1_cq1y6"]
+[ext_resource type="Script" uid="uid://b2jkqyyl85htf" path="res://scenes/train/Train.cs" id="1_fohox"]
+[ext_resource type="Texture2D" uid="uid://c2be56ly7wxja" path="res://rc/icon.svg" id="2_cq1y6"]
+[ext_resource type="AudioStream" uid="uid://gt5g2t6xhqlx" path="res://rc/correct.mp3" id="3_2axia"]
+[ext_resource type="AudioStream" uid="uid://djna5h5cqesiw" path="res://rc/wrong.mp3" id="4_kvlcj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7p7f0"]
+shader = ExtResource("1_cq1y6")
+shader_parameter/is_grayscale = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7p7f0"]
+size = Vector2(228.5, 79.5)
+
+[node name="Train" type="Area2D"]
+material = SubResource("ShaderMaterial_7p7f0")
+script = ExtResource("1_fohox")
+CorrectSound = ExtResource("3_2axia")
+WrongSound = ExtResource("4_kvlcj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.5, -0.5)
+scale = Vector2(1.7890625, 0.6171875)
+texture = ExtResource("2_cq1y6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.25, 0.25)
+shape = SubResource("RectangleShape2D_7p7f0")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-105, -29)
+rect = Rect2(-10, -10, 228, 79)
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
